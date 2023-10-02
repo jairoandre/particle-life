@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbh33xl6dc1jv"]
+
+[ext_resource type="Script" path="res://Control.gd" id="1_falfl"]
+[ext_resource type="Script" path="res://Sliders.gd" id="2_mgaa0"]
+[ext_resource type="PackedScene" uid="uid://dbvtidcl1hglw" path="res://my_slider.tscn" id="3_qiix4"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -736.0
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_falfl")
+
+[node name="Sliders" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 7.93
+offset_top = 35.0
+offset_right = 229.93
+offset_bottom = 234.0
+script = ExtResource("2_mgaa0")
+
+[node name="HideConfig" type="Button" parent="Sliders"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 160.0
+offset_right = 230.0
+offset_bottom = 191.0
+text = "Hide Config
+"
+
+[node name="RegenMatrix" type="Button" parent="Sliders"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 111.0
+offset_bottom = 191.0
+text = "Regen Forces"
+
+[node name="BetaSlider" parent="Sliders" instance=ExtResource("3_qiix4")]
+
+[node name="RMaxSlider" parent="Sliders" instance=ExtResource("3_qiix4")]
+offset_top = 30.0
+offset_bottom = 63.0
+
+[node name="ColorSlider" parent="Sliders" instance=ExtResource("3_qiix4")]
+offset_top = 60.0
+offset_bottom = 93.0
+
+[node name="NumPartSlider" parent="Sliders" instance=ExtResource("3_qiix4")]
+offset_top = 90.0
+offset_bottom = 123.0
+
+[node name="DtSlider" parent="Sliders" instance=ExtResource("3_qiix4")]
+offset_top = 120.0
+offset_bottom = 153.0
+
+[node name="ShowConfig" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Edit Config"
+
+[connection signal="change_common" from="Sliders" to="." method="_on_sliders_change_common"]
+[connection signal="change_num_particles" from="Sliders" to="." method="_on_sliders_change_num_particles"]
+[connection signal="regen_images" from="Sliders" to="." method="_on_sliders_regen_images"]
+[connection signal="pressed" from="Sliders/HideConfig" to="." method="_on_hide_config_pressed"]
+[connection signal="pressed" from="Sliders/RegenMatrix" to="." method="_on_regen_matrix_pressed"]
+[connection signal="change_value" from="Sliders/BetaSlider" to="Sliders" method="_on_beta_slider_change_value"]
+[connection signal="change_value" from="Sliders/RMaxSlider" to="Sliders" method="_on_r_max_slider_change_value"]
+[connection signal="change_value" from="Sliders/ColorSlider" to="Sliders" method="_on_color_slider_change_value"]
+[connection signal="change_value" from="Sliders/NumPartSlider" to="Sliders" method="_on_num_part_slider_change_value"]
+[connection signal="change_value" from="Sliders/DtSlider" to="Sliders" method="_on_dt_slider_change_value"]
+[connection signal="pressed" from="ShowConfig" to="." method="_on_show_config_pressed"]
